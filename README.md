@@ -2,16 +2,18 @@
 
 Bienvenue sur le Sparte Challenge !
 
-# Prérequis :
-Node 16 ou plus
+## Prérequis :
+[Node 16](https://nodejs.org/fr/download/)
 
-# Installation
-npm i
+Angular 14+ : `npm i @angular/cli -g`
 
-# Mise en route
-npm run start
+## Installation
+`npm i`
 
-# Instructions challenge
+## Mise en route
+`npm run start`
+
+## Instructions challenge
 Créer une branche git avec votre nom avant de commencer à coder.
 Quand le test est terminé, faire une pull request sur la branche master.
 
