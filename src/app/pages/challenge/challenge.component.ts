@@ -152,7 +152,7 @@ export class ChallengeComponent implements AfterViewInit {
   }
 
   /**
-   * TODO: Récupérer le nombre d'assets par systeme depuis this.systemsIdsForAssetPieChart
+   * DONE: Récupérer le nombre d'assets par systeme depuis this.systemsIdsForAssetPieChart
    * @returns {PieData[]} sous la forme [{name, value}]
    */
   get assetBySystemData(): PieData[] {
@@ -185,11 +185,11 @@ export class ChallengeComponent implements AfterViewInit {
   }
 
   /**
-   * TODO: récupérer les jours depuis challengeService.timeframe
+   * DONE: récupérer les jours depuis challengeService.timeframe
    * tip: utiliser moment(hour).format('LL') pour récupérer le jour pour une heure donnée
    */
   get xAxisByDays(): string[] {
-    return [];
+    return this.challengeService.timeframe.map(hour => moment(hour).format('Do MMM YYYY'));
   }
 
   /**
@@ -215,7 +215,16 @@ export class ChallengeComponent implements AfterViewInit {
       .map(asset => ({
         name: asset.label,
         type: 'line',
-        data: []
+        data: [
+          {
+          "value": 70.88,
+          "timestamp": "2022-06-01T01:00:00.000Z"
+          },
+          {
+            "value": 22.04,
+            "timestamp": "2022-06-01T17:00:00.000Z"
+          },
+        ]
       }));
   }
 
