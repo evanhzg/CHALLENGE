@@ -159,17 +159,14 @@ export class ChallengeComponent implements AfterViewInit {
     let result = [];
 
     let entryName;
-    let counter = 0;
 
     Object.entries(this.systemsIdsForAssetPieChart).forEach(([key, value]) => {
       let i = 0;
-      counter = 0;
+      let counter = 0;
       entryName = value;
 
       Object.entries(challengeData.assets).forEach(element => {
-        console.log(element[1])
         if (element[1].system_ids.includes(entryName)) {
-          console.log(element[1].id)
           counter++;
         }
       });
@@ -177,7 +174,6 @@ export class ChallengeComponent implements AfterViewInit {
       result.push({value: counter, name: entryName});
     });
 
-    console.log(counter)
     return result;
   }
 
