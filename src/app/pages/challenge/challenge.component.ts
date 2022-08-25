@@ -129,9 +129,24 @@ export class ChallengeComponent implements AfterViewInit {
     console.log(challengeData.environments)
 
     for (let i = 0; i < challengeData.environments.length; i++) {
+        let envId;
+        let envName;
+        let counter = 0;
       Object.entries(challengeData.environments[i]).forEach(([key, value]) => {
-        if (key == 'name' ) {
-          result.push({value: 10, name: value});
+        if (key == 'id') {
+          envId = value;
+        }
+        else {
+          envName = value;
+          for (let j = 0; j < challengeData.systems.length; j++) {
+            Object.entries(challengeData.systems[j]).forEach(([key, value]) => {
+              if (value == envId) {
+                console.log('envName  = ' + envName)
+                counter+=1;
+              }
+            });
+          }
+          result.push({value: counter, name: envName});
         }
       });
     }
