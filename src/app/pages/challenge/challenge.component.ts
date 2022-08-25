@@ -120,13 +120,11 @@ export class ChallengeComponent implements AfterViewInit {
   }
 
   /**
-   * TODO: Récupérer le nombre de systemes par environnement
+   * DONE: Récupérer le nombre de systemes par environnement
    * @returns {PieData[]} sous la forme [{name, value}]
    */
   get systemByEnvData(): PieData[] {
     let result = [];
-
-    console.log(challengeData.environments)
 
     for (let i = 0; i < challengeData.environments.length; i++) {
         let envId;
@@ -141,8 +139,7 @@ export class ChallengeComponent implements AfterViewInit {
           for (let j = 0; j < challengeData.systems.length; j++) {
             Object.entries(challengeData.systems[j]).forEach(([key, value]) => {
               if (value == envId) {
-                console.log('envName  = ' + envName)
-                counter+=1;
+                counter++;
               }
             });
           }
@@ -150,14 +147,6 @@ export class ChallengeComponent implements AfterViewInit {
         }
       });
     }
-    // Object.keys(challengeData.environments).forEach(model => {
-    //   if (model == 'environments') {
-    //     let test = 14, model;
-    //     console.log(Object.keys(challengeData.environments));
-    //     result.push({value: 14, name: 'ouais'})
-    //   }
-    // });
-
 
     return result;
   }
@@ -167,8 +156,29 @@ export class ChallengeComponent implements AfterViewInit {
    * @returns {PieData[]} sous la forme [{name, value}]
    */
   get assetBySystemData(): PieData[] {
+    let result = [];
 
-    return [];
+    let entryName;
+
+    for (let i = 0; i < this.systemsIdsForAssetPieChart.length; i++) {
+      let counter = 0;
+
+      Object.entries(this.systemsIdsForAssetPieChart[i]).forEach(entry => {
+        entryName = this.systemsIdsForAssetPieChart[i];
+
+        Object.entries(challengeData.assets[i]).forEach(([key, value]) => {
+          if (value.includes(entryName)) {
+            console.log(value)
+            counter++;
+          }
+        });
+      });
+
+        console.log(result)
+        result.push({value: counter, name: entryName});
+    }
+
+    return result;
   }
 
   /**
