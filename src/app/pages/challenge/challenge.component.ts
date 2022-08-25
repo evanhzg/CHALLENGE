@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { Asset } from '../../models/asset.model';
 import { ChallengeService } from '../../services/challenge.service';
+import challengeData from '../../dataset.json';
 
 moment.locale('fr');
 
@@ -123,7 +124,27 @@ export class ChallengeComponent implements AfterViewInit {
    * @returns {PieData[]} sous la forme [{name, value}]
    */
   get systemByEnvData(): PieData[] {
-    return [];
+    let result = [];
+
+    console.log(challengeData.environments)
+
+    for (let i = 0; i < challengeData.environments.length; i++) {
+      Object.entries(challengeData.environments[i]).forEach(([key, value]) => {
+        if (key == 'name' ) {
+          result.push({value: 10, name: value});
+        }
+      });
+    }
+    // Object.keys(challengeData.environments).forEach(model => {
+    //   if (model == 'environments') {
+    //     let test = 14, model;
+    //     console.log(Object.keys(challengeData.environments));
+    //     result.push({value: 14, name: 'ouais'})
+    //   }
+    // });
+
+
+    return result;
   }
 
   /**
@@ -131,6 +152,7 @@ export class ChallengeComponent implements AfterViewInit {
    * @returns {PieData[]} sous la forme [{name, value}]
    */
   get assetBySystemData(): PieData[] {
+
     return [];
   }
 
