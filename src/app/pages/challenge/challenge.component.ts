@@ -159,25 +159,25 @@ export class ChallengeComponent implements AfterViewInit {
     let result = [];
 
     let entryName;
+    let counter = 0;
 
-    for (let i = 0; i < this.systemsIdsForAssetPieChart.length; i++) {
-      let counter = 0;
+    Object.entries(this.systemsIdsForAssetPieChart).forEach(([key, value]) => {
+      let i = 0;
+      counter = 0;
+      entryName = value;
 
-      Object.entries(this.systemsIdsForAssetPieChart[i]).forEach(entry => {
-        entryName = this.systemsIdsForAssetPieChart[i];
-
-        Object.entries(challengeData.assets[i]).forEach(([key, value]) => {
-          if (value.includes(entryName)) {
-            console.log(value)
-            counter++;
-          }
-        });
+      Object.entries(challengeData.assets).forEach(element => {
+        console.log(element[1])
+        if (element[1].system_ids.includes(entryName)) {
+          console.log(element[1].id)
+          counter++;
+        }
       });
+      i++;
+      result.push({value: counter, name: entryName});
+    });
 
-        console.log(result)
-        result.push({value: counter, name: entryName});
-    }
-
+    console.log(counter)
     return result;
   }
 
