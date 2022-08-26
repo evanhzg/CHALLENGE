@@ -210,20 +210,14 @@ export class ChallengeComponent implements AfterViewInit {
    * @returns Series pour le LineChart
    */
   getTemperaturesByAssetForSystem(system_id: string): LineSeriesOption[] {
+    console.log(this.challengeService.getSystem(system_id))
     return this.challengeService.getSystem(system_id).recursiveAssets
       .filter(asset => asset.data.some(assetData => assetData.name === "temperature"))
       .map(asset => ({
         name: asset.label,
         type: 'line',
         data: [
-          {
-          "value": 70.88,
-          "timestamp": "2022-06-01T01:00:00.000Z"
-          },
-          {
-            "value": 22.04,
-            "timestamp": "2022-06-01T17:00:00.000Z"
-          },
+          // system_id.values
         ]
       }));
   }

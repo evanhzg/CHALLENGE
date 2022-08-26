@@ -18,8 +18,12 @@ export class System {
     return this.service.getSystems.filter(system => system.parent_id === this.id);
   }
 
-  //TODO: Rendre la fonction récursive (elle ne récupère que les assets direct, mais pas les assets des systemes enfants)
+  //DONE I THINK: Rendre la fonction récursive (elle ne récupère que les assets direct, mais pas les assets des systemes enfants)
   get recursiveAssets(): Asset[] {
+    if(this.parent_id) {
+      return this.service.getAssets.filter(asset => asset.system_ids.includes(this.parent_id));
+    }
+
     return this.service.getAssets.filter(asset => asset.system_ids.includes(this.id));
   }
 }
